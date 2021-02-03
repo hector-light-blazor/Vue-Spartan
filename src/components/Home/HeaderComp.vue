@@ -1,0 +1,106 @@
+<template>
+   <div class="head">
+     <div class="left">
+       <font-awesome-icon class="pico" @click="send" icon='bars' />
+       <input type="text" placeholder="ENTER KEYWORDS" />
+     </div>
+     <div class="right">
+        <div><font-awesome-icon class="icon pico" icon="bell" /></div>
+        <div><font-awesome-icon class="icon pico" icon="envelope" /></div>
+        <div class="title">
+           <span class="name">{{userInfo.first_name}}</span>
+           <span class="position">{{userInfo.work_center}}</span>
+        </div>
+        <div>
+          <img width="50" height="50" src="https://www.thefamouspeople.com/profiles/thumbs/chadwick-boseman-1.jpg" />
+        </div>
+     </div>
+   </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  name: 'HeaderComp',
+  methods: {
+    send () {
+      this.$emit('close')
+    }
+  },
+  computed: mapGetters(['userInfo'])
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+ .head{
+   display: flex;
+   flex-direction: row;
+   background: white;
+   width: 86vw;
+   height: 90px;
+ }
+ .left{
+   display: flex;
+   align-items: center;
+   padding-left: 20px;
+   font-size:larger;
+   height: 100%;
+   width: 300px;
+ }
+ .right{
+   display: flex;
+   align-items: center;
+   margin-left: auto;
+   width: 340px;
+   flex-wrap: wrap;
+   padding: 8px;
+ }
+ .right > div{
+   flex: 1 1 auto;
+   text-align: center;
+   margin: 8px;
+ }
+ input{
+   margin-left: 20px;
+   border-radius: 20px;
+   border: 1px solid lavender;
+   height: 35px;
+   width: 270px;
+   padding-left: 10px;
+ }
+ input:focus{
+   outline: none;
+ }
+ input::placeholder{
+   text-align: center;
+   color: #8b8b8b;
+   font-weight: bold;
+   font-size: medium;
+ }
+ .pico{
+   cursor: pointer;
+ }
+ .title{
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+ }
+ .name{
+   color: #606060;
+ }
+ .position{
+   color: #959595;
+   font-size: 0.6rem;
+   font-weight: bold;
+ }
+ .icon{
+   font-size: x-large;
+   color: #808080d0;
+ }
+
+ img{
+   clip-path: circle(25px at center);
+ }
+
+</style>
