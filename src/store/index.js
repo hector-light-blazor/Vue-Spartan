@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import AccountModule from '@/modules/AccountModule'
 import SpartansModule from '@/modules/SpartansModule'
+import SocketModule from '@/modules/SocketModule'
 
 export default createStore({
   state: {
@@ -10,7 +11,8 @@ export default createStore({
   actions: {
   },
   modules: {
-    AccountModule,
-    SpartansModule
+    account: AccountModule,
+    spartant: SpartansModule,
+    socket: SocketModule
   }
 })

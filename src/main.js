@@ -14,7 +14,7 @@ app.directive('uppercase', {
     el.value = el.value.toUpperCase()
   }
 })
-
+// app.use(new VueSocketIO({ debug: true, connection: 'http://localhost:3000' }))
 app.use(store).use(router).component('font-awesome-icon', FontAwesomeIcon)
 
 router.beforeEach(async (to, from, next) => {

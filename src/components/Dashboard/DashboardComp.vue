@@ -13,7 +13,7 @@
          <div class="spartans shadow">
              <div class="title">Online</div>
              <div class="contents">
-                 <online-cards v-for="spartan in listOfUsers" :spartan="spartan" :key="spartan.user_id" />
+                 <online-cards v-for="spartan in listOfOnline" :spartan="spartan" :key="spartan.user_id" />
              </div>
          </div>
      </div>
@@ -27,7 +27,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Dashboard',
   components: { CardsComp, OnlineCards },
-  computed: { ...mapGetters(['listOfUsers', 'totalUsers']) },
+  computed: { ...mapGetters(['listOfOnline', 'totalUsers']) },
   data () {
     return {
       list: [

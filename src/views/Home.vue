@@ -13,6 +13,7 @@
 </template>
 <script>
 import { onMounted } from 'vue'
+import { mapActions, mapGetters } from 'vuex'
 import LogoComp from '@/components/Home/LogoComp.vue'
 import FooterComp from '@/components/Home/FooterComp.vue'
 import ListButtonsComp from '@/components/Home/ListButtonsComp.vue'
@@ -20,12 +21,19 @@ import HeaderComp from '@/components/Home/HeaderComp.vue'
 
 export default {
   components: { LogoComp, FooterComp, ListButtonsComp, HeaderComp },
+  computed: { ...mapGetters(['socket', 'USER_ID', 'totalUsers']) },
+  mounted () {
+    if (this.totalUsers === 0) this.getUsers()
+    this.$store.commit('UPDATE_MYSELF', this.USER_ID)
+    this.socket.emit('client:spartans:online', this.USER_ID)
+  },
   setup () {
     onMounted(() => {
       document.body.style.margin = '0'
     })
   },
   methods: {
+    ...mapActions(['getUsers']),
     closeNav () {
       var el = document.getElementById('left')
       el.classList.remove('pop')

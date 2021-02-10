@@ -4,10 +4,14 @@ import { req } from '@/api/Req'
 import * as user from './account/computes'
 
 const state = {
-  user: {}
+  user: {},
+  socketid: 0,
+  online: 0
 }
 
 const getters = {
+  USER_ID: state => state.user.user_id,
+  SOCK_ID: state => state.socketid,
   loggedIn: state => user.isOnline(state.user),
   userInfo: state => state.user,
   fullName: state => user.fullName(state.user),
@@ -45,12 +49,18 @@ const actions = {
     const user = response.data.user
     commit('setUser', user)
     return response.data.success
+  },
+  saveID ({ commit }, data) {
+    commit('setSocket', data)
   }
 }
 
 const mutations = {
   setUser: (state, user) => {
     state.user = user
+  },
+  setSocket: (state, id) => {
+    state.socketid = id
   }
 }
 

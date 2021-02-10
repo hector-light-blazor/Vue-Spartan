@@ -5,17 +5,18 @@ import * as user from './account/computes'
 
 export default {
   state: {
-    users: []
+    users: [],
+    myself: 0
   },
   getters: {
     listOfUsers: state => state.users,
+    listOfOnline: state => state.users.filter(spartan => Boolean(spartan.online) && spartan.user_id !== state.myself),
     totalUsers: state => state.users.length,
     spartanFullName: state => (id) => {
       const spartan = state.users.find(user => user.user_id === id)
       return `${spartan.first_name} ${spartan.last_name}`
     },
     getTeam: state => (team) => {
-      console.log(team)
       return `${user.workCenter(team)}`
     },
     getIcon: state => (icon) => {
@@ -24,7 +25,17 @@ export default {
   },
   mutations: {
     updateUsers (state, payload) {
-      state.users = payload
+      state.users = (payload) || []
+    },
+    UPDATE_ONLINE (state, payload) {
+      if (payload) {
+        const index = state.users.findIndex(spartan => spartan.user_id === payload.user_id)
+        if (index === -1) return
+        state.users[index].online = (payload?.online) || 0
+      }
+    },
+    UPDATE_MYSELF (state, user) {
+      state.myself = (user) || 0
     }
   },
   actions: {
