@@ -7,5 +7,8 @@ export const req = {
   Users: {
     getAll: 'users/getListOfUsers',
     getImage: 'users/getUserImage?pic='
+  },
+  Tickets: {
+    getCharts: 'addressticket/getCharts/?o='
   }
 }

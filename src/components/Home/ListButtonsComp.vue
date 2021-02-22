@@ -1,8 +1,8 @@
 <template>
    <div class="top">
       <ul>
-          <li @click="selection" name="home" v-bind:class="{active: buttons.home}" ><font-awesome-icon icon="home" /></li>
-          <li @click="selection" name="plus" v-bind:class="{active: buttons.plus}"><font-awesome-icon icon="plus-circle" /></li>
+          <li @click="selection" route="/Home/Dashboard" name="home" v-bind:class="{active: buttons.home}" ><font-awesome-icon icon="home" /></li>
+          <li @click="selection" route="/Home/NewTasks" name="plus" v-bind:class="{active: buttons.plus}"><font-awesome-icon icon="plus-circle" /></li>
           <li @click="selection" name="map" v-bind:class="{active: buttons.map}"><font-awesome-icon icon="map-marker-alt" /></li>
           <li @click="selection" name="cog" v-bind:class="{active: buttons.cog}"><font-awesome-icon icon="cog" /></li>
       </ul>
@@ -12,6 +12,15 @@
 <script>
 export default {
   name: 'ListButtons',
+  mounted () {
+    const path = this.$route.path
+    if (!path.includes('Dashboard')) {
+      for (const key in this.buttons) {
+        this.buttons[key] = false
+      }
+    }
+    if (path.includes('NewTasks')) { this.buttons.plus = true }
+  },
   data () {
     return {
       buttons: {
@@ -25,10 +34,13 @@ export default {
   methods: {
     selection (event) {
       var name = event.currentTarget.getAttribute('name')
+      var route = event.currentTarget.getAttribute('route')
       this.buttons[name] = true
       for (var nme in this.buttons) {
         if (name !== nme) { this.buttons[nme] = false }
       }
+
+      this.$router.push(route)
     }
   }
 }
@@ -40,7 +52,6 @@ export default {
      margin-top: 24px;
      width: 100%;
      line-height: 5rem;
-
  }
  ul{
      position: relative;

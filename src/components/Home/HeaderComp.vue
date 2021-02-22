@@ -12,7 +12,7 @@
            <span class="position">{{workCenter}}</span>
         </div>
         <div class="selection">
-          <img width="50" height="50" v-bind:src="accIcon" />
+          <profile />
           <!-- "https://www.thefamouspeople.com/profiles/thumbs/chadwick-boseman-1.jpg" /> -->
         </div>
      </div>
@@ -21,15 +21,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Profile from '../UI/Profile.vue'
 
 export default {
+  components: { Profile },
   name: 'HeaderComp',
   methods: {
     send () {
       this.$emit('close')
     }
   },
-  computed: mapGetters(['fullName', 'workCenter', 'accIcon'])
+  computed: mapGetters(['fullName', 'workCenter'])
 }
 </script>
 
@@ -110,10 +112,6 @@ export default {
  .icon{
    font-size: x-large;
    color: #808080d0;
- }
-
- img{
-   clip-path: circle(25px at center);
  }
 
 </style>

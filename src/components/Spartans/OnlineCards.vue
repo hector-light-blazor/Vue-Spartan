@@ -16,7 +16,6 @@ export default {
   computed: { ...mapGetters(['spartanFullName', 'getIcon', 'getTeam']) },
   methods: {
     onIMGError (event) {
-      console.log(image)
       var target = event.target
       target.src = image
     }

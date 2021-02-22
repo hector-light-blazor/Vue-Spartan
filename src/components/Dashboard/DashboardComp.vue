@@ -8,7 +8,7 @@
      </div>
      <div class="body">
          <div class="stats shadow">
-             Tasks By Month
+             <chart />
          </div>
          <div class="spartans shadow">
              <div class="title">Online</div>
@@ -24,17 +24,39 @@
 import OnlineCards from '@/components/Spartans/OnlineCards.vue'
 import CardsComp from './CardsComp.vue'
 import { mapGetters } from 'vuex'
+import Chart from '@/components/Dashboard/Chart/Chart'
+
 export default {
   name: 'Dashboard',
-  components: { CardsComp, OnlineCards },
+  components: { CardsComp, OnlineCards, Chart },
   computed: { ...mapGetters(['listOfOnline', 'totalUsers']) },
   data () {
     return {
-      list: [
-        'https://www.factinate.com/wp-content/uploads/2017/11/GettyImages-803015182.jpg', 'https://www.factinate.com/wp-content/uploads/2017/11/GettyImages-803015182.jpg',
-        'https://www.factinate.com/wp-content/uploads/2017/11/GettyImages-803015182.jpg',
-        'https://www.factinate.com/wp-content/uploads/2017/11/GettyImages-803015182.jpg',
-        'https://www.factinate.com/wp-content/uploads/2017/11/GettyImages-803015182.jpg']
+      datacollection: null
+    }
+  },
+  mounted () {
+    this.fillData()
+  },
+  methods: {
+    fillData () {
+      this.datacollection = {
+        labels: [this.getRandomInt(), this.getRandomInt()],
+        datasets: [
+          {
+            label: 'Data One',
+            backgroundColor: '#f87979',
+            data: [this.getRandomInt(), this.getRandomInt()]
+          }, {
+            label: 'Data One',
+            backgroundColor: '#f87979',
+            data: [this.getRandomInt(), this.getRandomInt()]
+          }
+        ]
+      }
+    },
+    getRandomInt () {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
     }
   }
 }
@@ -48,7 +70,7 @@ export default {
 }
 .contents{
     margin: 0 auto;
-    width: 80%;
+    width: 84%;
     height: 380px;
     margin-top: 20px;
     overflow:hidden;
@@ -101,18 +123,19 @@ export default {
 }
 .stats{
     margin: 0 auto;
-    height: 200px;
+    height: 500px;
     margin-left: 40px;
-    width: 100%;
+    width: 70%;
     border-radius: 20px;
     background: white;
+    text-align: center;
 }
 .spartans{
     border-radius: 20px;
     background: white;
     height: 100%;
     margin: 0 auto;
-    width: 60%;
+    width: 64%;
     display: grid;
     grid-template-rows: auto auto;
 }

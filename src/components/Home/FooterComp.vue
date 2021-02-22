@@ -6,10 +6,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'FooterComp',
+  computed: { ...mapGetters(['socket', 'USER_ID']) },
   methods: {
     logOut () {
+      this.socket.emit('spartan:leaving', this.USER_ID)
       localStorage.removeItem('user_id')
       this.$router.push('/')
     }

@@ -1,10 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import Splash from '@/views/Splash.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Splash',
-    component: () => import(/* webpackChunkName: "Splash" */ '../views/Splash.vue')
+    component: Splash
   },
   {
     path: '/Login',
@@ -34,6 +35,16 @@ const routes = [
       {
         path: 'Settings',
         name: 'Settings'
+      },
+      {
+        path: 'NewTasks',
+        name: 'New',
+        component: () => import(/* webpackChunkName: "New" */ '@/views/New.vue')
+      },
+      {
+        path: 'AddressRequest',
+        name: 'Address',
+        component: () => import(/* webpackChunkName: "Address" */ '@/views/AddressForm.vue')
       }
     ]
   }

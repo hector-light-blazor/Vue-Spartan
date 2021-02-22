@@ -14,6 +14,7 @@ const getters = {
   SOCK_ID: state => state.socketid,
   loggedIn: state => user.isOnline(state.user),
   userInfo: state => state.user,
+  SPARTAN_INFO: state => state.user,
   fullName: state => user.fullName(state.user),
   accIcon: state => (state.user.icon) ? `${endpoint.second}${req.Users.getImage}${state.user.icon}` : endpoint.image,
   workCenter: state => user.workCenter(state.user.work_center)
