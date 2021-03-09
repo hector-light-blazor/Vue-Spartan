@@ -31,6 +31,6 @@ export default {
    clip-path: circle(25px at center);
  }
  .full {
-   clip-path: circle(50px at center);
+   clip-path: circle(35px at center);
  }
 </style>

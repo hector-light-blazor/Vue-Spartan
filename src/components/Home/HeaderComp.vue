@@ -12,7 +12,7 @@
            <span class="position">{{workCenter}}</span>
         </div>
         <div class="selection">
-          <profile />
+          <profile-pic />
           <!-- "https://www.thefamouspeople.com/profiles/thumbs/chadwick-boseman-1.jpg" /> -->
         </div>
      </div>
@@ -21,10 +21,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Profile from '../UI/Profile.vue'
+import ProfilePic from '../UI/ProfilePic.vue'
 
 export default {
-  components: { Profile },
+  components: { ProfilePic },
   name: 'HeaderComp',
   methods: {
     send () {

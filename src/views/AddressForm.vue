@@ -1,44 +1,51 @@
 <template>
   <div class="center">
+   <navigation-bar @navigationChange="changeComp" />
     <form class="grid shadow">
-      <profile width="100" full="true" height="100" class="profile" />
+      <profile-pic width="70" full="true" height="70" class="profile" />
       <div class="title">202018265</div>
-      <div class="column">
-          <div class="col">
-            <Input index="1" title="First Name" placeholder="First Name" name="fname" />
-            <input-mask index="3" title="Main Number:" placeholder="(000) 000-0000" name="tele" />
-            <Input index="5" title="E-mail" placeholder="E-mail" name="email" type="email" />
-          </div>
-          <div class="col">
-            <Input index="2" title="Last Name:" placeholder="Last name" name="lname" />
-            <!-- <Input title="Second Number:" placeholder="Telephone" name="lname" /> -->
-            <input-mask index="4" placeholder="(000) 000-0000" title="Second Number:" />
-            <Input index="6" title="Alt. E-mail" placeholder="E-mail" name="altemail" />
-          </div>
-      </div>
+      <transition name="fade">
+        <customer-info v-if="show" />
+      </transition>
       <div class="footer">
         <mutli-actions />
-         <button type="button">Next</button>
+        <next-action />
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import Input from '@/components/UI/Ticket/Input'
-import InputMask from '@/components/UI/Ticket/InputMask'
-import Profile from '@/components/UI/Profile'
+
+import ProfilePic from '@/components/UI/ProfilePic'
 import MutliActions from '@/components/UI/Ticket/MutliActions.vue'
+import NextAction from '@/components/UI/Ticket/NextAction.vue'
+import CustomerInfo from '@/components/UI/Ticket/CustomerInfo'
+import NavigationBar from '@/components/UI/Ticket/NavigationBar.vue'
 
 export default {
-  components: { Profile, Input, InputMask, MutliActions },
-  name: 'AddressForm'
+  components: { ProfilePic, MutliActions, NextAction, CustomerInfo, NavigationBar },
+  name: 'AddressForm',
+  data () {
+    return {
+      nav: {
+        one: { show: true },
+        two: { show: false }
+      }
+    }
+  },
+  methods: {
+    changeComp (arg) {
+      this.show = arg
+    }
+  }
 }
 </script>
 
 <style scoped>
 .center{
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -63,24 +70,18 @@ form{
 }
 .profile {
   position: absolute;
-  margin-left: -50px;
-  margin-top: -50px;
+  margin-left: -10px;
+  margin-top: -35px;
 }
 .grid{
   display: flex;
   flex-direction: column;
 }
-.column{
-  display: grid;
-  grid-template-columns: auto auto;
-  margin-top: 14px;
-  padding: 10px;
-  height: 100%;
-}
+
 .footer{
   display: grid;
   grid-template-columns: auto auto;
   height: 120px;
-  border: 1px solid goldenrod;
 }
+
 </style>

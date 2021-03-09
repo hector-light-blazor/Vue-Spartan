@@ -4,10 +4,12 @@
                <span class="icon"><font-awesome-icon icon="plus" /></span>
            </button>
            <ul class="actions drop-right">
-             <li class="bg-blue"><a href="#"><span class="mif-user-plus"></span></a></li>
-        <li class="bg-teal"><a href="#"><span class="mif-library"></span></a></li>
-        <li class="bg-pink"><a href="#"><span class="mif-alarm"></span></a></li>
-        <li class="bg-orange"><a href="#"><span class="mif-lock"></span></a></li>
+             <li class="bg-blue">
+                <font-awesome-icon icon="paperclip" />
+             </li>
+              <li class="bg-teal"><font-awesome-icon icon="comment-dots" /></li>
+              <li class="bg-pink"><a href="#"><span class="mif-alarm"></span></a></li>
+              <li class="bg-orange"><a href="#"><span class="mif-lock"></span></a></li>
            </ul>
          </div>
 </template>
@@ -82,7 +84,7 @@ export default {
   float: left;
   background-color: transparent;
   top: 8px;
-  left: 26px;
+  left: 28px;
   z-index: 1;
   width: 40px;
   height: 40px;
@@ -97,8 +99,8 @@ export default {
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
           box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   margin: 0;
-  background: #989898;
-  color: #ffffff;
+  background: white;
+  color: #646464;
   -webkit-transform: scale(0.2);
           transform: scale(0.2);
   line-height: 40px;

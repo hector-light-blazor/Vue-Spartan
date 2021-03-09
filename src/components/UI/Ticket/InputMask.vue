@@ -22,12 +22,11 @@ export default {
   },
   setup () {
     const itel = ref(null)
+    let mask = ref(null)
     onMounted(() => {
-      console.log(itel)
-      var mask = new IMask(itel.value, { mask: '(000) 000-0000' })
-      return mask
+      mask = new IMask(itel.value, { mask: '(000) 000-0000' })
     })
-    return { itel }
+    return { itel, mask }
   }
 
 }
