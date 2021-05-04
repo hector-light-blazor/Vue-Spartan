@@ -1,7 +1,7 @@
 <template>
  <div class="container">
      <div class="tasks shadow">
-         <cards-comp title="GENERAL TASKS" color="#0B3591" stats="200" />
+         <cards-comp id="ListTasks" title="GENERAL TASKS" color="#0B3591" stats="200" />
          <cards-comp title="CRITICAL TASKS" color="#C40D0D" stats="120" />
          <cards-comp title="ASSIGNED TASKS" color="#1BB444" stats="230" />
          <cards-comp title="RECENT ARCHIVED" color="#E5D655" stats="330" />
@@ -66,7 +66,8 @@ export default {
 .container{
     margin: 0 auto;
     margin-top: 20px;
-    height: 80%;
+    height: 88%;
+    overflow: auto;
 }
 .contents{
     margin: 0 auto;
@@ -120,6 +121,7 @@ export default {
     grid-template-columns: auto auto;
     padding: 18px;
     height: 60%;
+    margin: 0 auto;
 }
 .stats{
     margin: 0 auto;
@@ -133,7 +135,7 @@ export default {
 .spartans{
     border-radius: 20px;
     background: white;
-    height: 100%;
+    height: 90%;
     margin: 0 auto;
     width: 64%;
     display: grid;
@@ -148,4 +150,5 @@ export default {
     color: #646464;
     font-weight: bolder;
 }
+
 </style>

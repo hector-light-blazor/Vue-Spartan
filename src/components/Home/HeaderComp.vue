@@ -50,7 +50,6 @@ export default {
    padding-left: 20px;
    font-size:larger;
    height: 100%;
-   width: 300px;
  }
  .right{
    display: flex;
@@ -83,10 +82,13 @@ export default {
    height: 35px;
    width: 270px;
    padding-left: 10px;
+   transition: width 1s;
  }
  input:focus{
    outline: none;
+   width: 350px;
  }
+
  input::placeholder{
    text-align: center;
    color: #8b8b8b;

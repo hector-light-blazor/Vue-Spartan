@@ -19,7 +19,7 @@ export default {
         this.buttons[key] = false
       }
     }
-    if (path.includes('NewTasks')) { this.buttons.plus = true }
+    if (path.includes('NewTasks') || path.includes('Address')) { this.buttons.plus = true }
   },
   data () {
     return {
@@ -81,9 +81,9 @@ export default {
      position: absolute;
      z-index: -1;
      content:"";
-     width: clamp(1rem, 14vw, 34vw);
+     width: clamp(1rem, 12vw, 34vw);
      height: 90px;
-     left: -28px;
+     left: -61px;
      bottom: -8px;
      border: 1px solid #f7f7f7d0;
      border-radius: 10px 0px 0px 10px;

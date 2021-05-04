@@ -5,7 +5,7 @@
          <span>Premises Info</span>
          <span>LV</span>
       </div>
-      <ul>
+      <ul id='navi' @proceed="proceed" @handle="selected">
         <li @click="setSelected" class="selected" :class="{active: select.two}" name="one">
           1
         </li>
@@ -21,14 +21,23 @@ export default {
   name: 'NavigationBar',
   data () {
     return {
+      name: '',
       select: { one: false, two: false, three: false }
     }
   },
   methods: {
+    selected (event) {
+      this.parse(event.detail)
+    },
     setSelected (event) {
       const li = event.target
-      const name = li.getAttribute('name')
-      this.$emit('navigationChange', name)
+      this.name = li.getAttribute('name')
+      this.$emit('navigationChange', this.name)
+    },
+    proceed () {
+      this.parse(this.name)
+    },
+    parse (name) {
       if (name === 'one') {
         for (const key in this.select) {
           this.select[key] = false

@@ -10,6 +10,9 @@ library.add(fas)
 
 const app = createApp(App)
 app.directive('uppercase', {
+  beforeUpdate (el) {
+    el.value = el.value.toUpperCase()
+  },
   updated (el) {
     el.value = el.value.toUpperCase()
   }

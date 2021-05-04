@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="onChange" v-bind:id="id">
       <div class="top">
         <span>{{title}}</span>
         <font-awesome-icon v-bind:style="{color}" class="icon" icon="ticket-alt" />
@@ -14,9 +14,18 @@
 export default {
   name: 'CardsComp',
   props: {
+    id: String,
     title: String,
     stats: String,
     color: String
+  },
+  methods: {
+    onChange (e) {
+      const element = e.target || e.srcElement
+      const parent = element.parentElement
+      console.log(e)
+      console.log(parent)
+    }
   }
 }
 </script>
@@ -30,6 +39,7 @@ export default {
     height: 75%;
     box-shadow: 2px 5px 10px #888888;
 }
+
 .top{
   display: grid;
   grid-template-columns: auto auto;
@@ -51,5 +61,12 @@ export default {
 .icon{
   font-size: 3rem;
   margin-left: auto;
+}
+.card:hover {
+  cursor: pointer;
+  background: #08235E !important;
+}
+.card:hover .stats, .card:hover .top{
+  color: white !important;
 }
 </style>

@@ -4,12 +4,12 @@
                <span class="icon"><font-awesome-icon icon="plus" /></span>
            </button>
            <ul class="actions drop-right">
-             <li class="bg-blue">
+             <li style="color: #db0d7f">
                 <font-awesome-icon icon="paperclip" />
              </li>
-              <li class="bg-teal"><font-awesome-icon icon="comment-dots" /></li>
-              <li class="bg-pink"><a href="#"><span class="mif-alarm"></span></a></li>
-              <li class="bg-orange"><a href="#"><span class="mif-lock"></span></a></li>
+              <li style="color: #0a7ac9"><font-awesome-icon icon="comment-dots" /></li>
+              <li style="color: #15aabf"><font-awesome-icon icon="map-pin" /></li>
+              <li style="color: #d6350d"><font-awesome-icon icon="file-pdf" /></li>
            </ul>
          </div>
 </template>
@@ -69,6 +69,7 @@ export default {
   height: 56px;
   margin-top: auto;
   margin-bottom: auto;
+  text-align: center;
 }
 .multi-action .action-button {
   position: absolute;

@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Splash from '@/views/Splash.vue'
+import Splash from '@/Pages/Splash.vue'
 
 const routes = [
   {
@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/Login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "Login" */ '../Pages/Login.vue')
   },
   {
     path: '/Forgot',
@@ -18,14 +18,14 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Forgot" */ '@/views/Forgot.vue')
+    component: () => import(/* webpackChunkName: "Forgot" */ '@/Pages/Forgot.vue')
   }, {
     path: '/Home',
     name: 'Home',
     meta: {
       requiresAuth: true
     },
-    component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue'),
+    component: () => import(/* webpackChunkName: "Home" */ '@/Pages/Home.vue'),
     children: [
       {
         path: 'Dashboard',
@@ -39,12 +39,17 @@ const routes = [
       {
         path: 'NewTasks',
         name: 'New',
-        component: () => import(/* webpackChunkName: "New" */ '@/views/New.vue')
+        component: () => import(/* webpackChunkName: "New" */ '@/Pages/New.vue')
+      },
+      {
+        path: 'ListTasks',
+        name: 'General',
+        component: () => import(/* webpackChunkName: "General" */ '@/components/Tasks/View/TableView.vue')
       },
       {
         path: 'AddressRequest',
         name: 'Address',
-        component: () => import(/* webpackChunkName: "Address" */ '@/views/AddressForm.vue')
+        component: () => import(/* webpackChunkName: "Address" */ '@/Pages/AddressForm.vue')
       }
     ]
   }
