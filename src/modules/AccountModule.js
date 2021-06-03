@@ -6,7 +6,8 @@ import * as user from './account/computes'
 const state = {
   user: {},
   socketid: 0,
-  online: 0
+  online: 0,
+  error_icon: endpoint.image
 }
 
 const getters = {
@@ -14,9 +15,11 @@ const getters = {
   SOCK_ID: state => state.socketid,
   loggedIn: state => user.isOnline(state.user),
   userInfo: state => state.user,
+  ORGAID: state => state.user?.organization_id,
   SPARTAN_INFO: state => state.user,
   fullName: state => user.fullName(state.user),
-  accIcon: state => (state.user.icon) ? `${endpoint.second}${req.Users.getImage}${state.user.icon}` : endpoint.image,
+  accIcon: state => user.HANDLE_ICON(state.icon),
+  failIcon: state => state.error_icon,
   workCenter: state => user.workCenter(state.user.work_center)
 }
 
@@ -27,6 +30,7 @@ const actions = {
     const rem = options[1]
     const response = await axios.post(endpoint.first + req.Login.auth, user)
     const dt = response.data
+    console.log(dt)
     if (dt.success && rem) {
       localStorage.setItem('user_id', dt.user.user_id)
     }
@@ -62,6 +66,9 @@ const mutations = {
   },
   setSocket: (state, id) => {
     state.socketid = id
+  },
+  setIcon: (state, ic) => {
+    state.user.icon = ic
   }
 }
 

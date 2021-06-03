@@ -1,7 +1,7 @@
 <template>
- <div class="container">
+ <div v-if="noShow" class="container">
      <div class="tasks shadow">
-         <cards-comp id="ListTasks" title="GENERAL TASKS" color="#0B3591" stats="200" />
+         <cards-comp page="GeneralTasks" title="GENERAL TASKS" color="#0B3591" stats="200" />
          <cards-comp title="CRITICAL TASKS" color="#C40D0D" stats="120" />
          <cards-comp title="ASSIGNED TASKS" color="#1BB444" stats="230" />
          <cards-comp title="RECENT ARCHIVED" color="#E5D655" stats="330" />
@@ -23,22 +23,28 @@
 <script>
 import OnlineCards from '@/components/Spartans/OnlineCards.vue'
 import CardsComp from './CardsComp.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Chart from '@/components/Dashboard/Chart/Chart'
 
 export default {
-  name: 'Dashboard',
+  name: 'DashComp',
   components: { CardsComp, OnlineCards, Chart },
-  computed: { ...mapGetters(['listOfOnline', 'totalUsers']) },
+  computed: { ...mapGetters(['listOfOnline', 'totalUsers', 'ORGAID']) },
   data () {
     return {
-      datacollection: null
+      datacollection: null,
+      noShow: false
     }
   },
   mounted () {
     this.fillData()
+    this.getOpenTasks(this.ORGAID)
+    setTimeout(() => {
+      this.noShow = true
+    }, 2000)
   },
   methods: {
+    ...mapActions(['getOpenTasks']),
     fillData () {
       this.datacollection = {
         labels: [this.getRandomInt(), this.getRandomInt()],

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <img v-bind:width="width" v-bind:class="{full: full}" v-bind:height="height" v-bind:src="accIcon" />
+      <img v-bind:width="width" v-bind:class="{full: full}" @error="onError" v-bind:height="height" v-bind:src="accIcon" />
   </div>
 </template>
 
@@ -22,7 +22,12 @@ export default {
       default: false
     }
   },
-  computed: mapGetters(['accIcon'])
+  computed: mapGetters(['accIcon', 'failIcon']),
+  methods: {
+    onError () {
+      this.$store.commit('setIcon', this.failIcon)
+    }
+  }
 }
 </script>
 

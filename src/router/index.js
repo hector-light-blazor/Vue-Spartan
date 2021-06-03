@@ -30,7 +30,7 @@ const routes = [
       {
         path: 'Dashboard',
         name: 'Dash',
-        component: () => import(/* webpackChunkName: "Dash" */ '@/components/Dashboard/DashboardComp.vue')
+        component: () => import(/* webpackChunkName: "Dash" */ '@/Pages/Dashboard.vue')
       },
       {
         path: 'Settings',
@@ -42,9 +42,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "New" */ '@/Pages/New.vue')
       },
       {
-        path: 'ListTasks',
+        path: 'GeneralTasks',
         name: 'General',
-        component: () => import(/* webpackChunkName: "General" */ '@/components/Tasks/View/TableView.vue')
+        component: () => import(/* webpackChunkName: "General" */ '@/Pages/GeneralTasks.vue')
       },
       {
         path: 'AddressRequest',

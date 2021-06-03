@@ -9,6 +9,7 @@ export const req = {
     getImage: 'users/getUserImage?pic='
   },
   Tickets: {
-    getCharts: 'addressticket/getCharts/?o='
+    getCharts: 'addressticket/getCharts/?o=',
+    openByOrga: 'addressticket/getAllOpenTicketsByOrga'
   }
 }

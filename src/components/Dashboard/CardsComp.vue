@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="onChange" v-bind:id="id">
+  <div class="card" @click="onChange" >
       <div class="top">
         <span>{{title}}</span>
         <font-awesome-icon v-bind:style="{color}" class="icon" icon="ticket-alt" />
@@ -14,17 +14,14 @@
 export default {
   name: 'CardsComp',
   props: {
-    id: String,
     title: String,
     stats: String,
-    color: String
+    color: String,
+    page: String
   },
   methods: {
     onChange (e) {
-      const element = e.target || e.srcElement
-      const parent = element.parentElement
-      console.log(e)
-      console.log(parent)
+      this.$router.push(this.page)
     }
   }
 }
