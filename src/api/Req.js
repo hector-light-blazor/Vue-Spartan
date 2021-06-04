@@ -10,6 +10,7 @@ export const req = {
   },
   Tickets: {
     getCharts: 'addressticket/getCharts/?o=',
-    openByOrga: 'addressticket/getAllOpenTicketsByOrga'
+    openByOrga: 'addressticket/get_open_tickets',
+    assign: 'addressticket/get_user_inbox'
   }
 }

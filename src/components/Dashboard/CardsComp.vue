@@ -15,7 +15,7 @@ export default {
   name: 'CardsComp',
   props: {
     title: String,
-    stats: String,
+    stats: Number,
     color: String,
     page: String
   },

@@ -1,9 +1,9 @@
 <template>
- <div v-if="noShow" class="container">
+ <div v-if="DASH_VISIBLE" class="container">
      <div class="tasks shadow">
-         <cards-comp page="GeneralTasks" title="GENERAL TASKS" color="#0B3591" stats="200" />
+         <cards-comp page="GeneralTasks" title="GENERAL TASKS" color="#0B3591" v-bind:stats="GEN_TOTAL" />
          <cards-comp title="CRITICAL TASKS" color="#C40D0D" stats="120" />
-         <cards-comp title="ASSIGNED TASKS" color="#1BB444" stats="230" />
+         <cards-comp title="ASSIGN TASKS" color="#1BB444" v-bind:stats="ASSIGN_TOTAL" />
          <cards-comp title="RECENT ARCHIVED" color="#E5D655" stats="330" />
      </div>
      <div class="body">
@@ -29,22 +29,24 @@ import Chart from '@/components/Dashboard/Chart/Chart'
 export default {
   name: 'DashComp',
   components: { CardsComp, OnlineCards, Chart },
-  computed: { ...mapGetters(['listOfOnline', 'totalUsers', 'ORGAID']) },
+  computed: { ...mapGetters(['USER_ID', 'listOfOnline', 'totalUsers', 'ORGAID', 'GEN_TOTAL', 'ASSIGN_TOTAL', 'DASH_VISIBLE']) },
   data () {
     return {
-      datacollection: null,
-      noShow: false
+      datacollection: null
     }
   },
   mounted () {
     this.fillData()
     this.getOpenTasks(this.ORGAID)
+    this.getAssignTasks(this.USER_ID)
+    if (this.DASH_VISIBLE) return
+
     setTimeout(() => {
-      this.noShow = true
+      this.changeVisibility(true)
     }, 2000)
   },
   methods: {
-    ...mapActions(['getOpenTasks']),
+    ...mapActions(['getOpenTasks', 'getAssignTasks', 'changeVisibility']),
     fillData () {
       this.datacollection = {
         labels: [this.getRandomInt(), this.getRandomInt()],

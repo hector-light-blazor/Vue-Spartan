@@ -3,45 +3,57 @@ import * as endpoint from '@/api/Global'
 import { req } from '@/api/Req'
 
 const state = {
-  general: {},
-  critical: {},
-  assigned: {},
-  archived: {}
+  general: [],
+  critical: [],
+  assign: [],
+  archived: []
 }
 
 const getters = {
   GENERAL: state => state.general,
+  GEN_TOTAL: state => state.general?.length,
   CRITICAL: state => state.critical,
-  ASSIGNED: state => state.assigned,
+  ASSIGN_TOTAL: state => state.assign?.length,
   ARCHIVED: state => state.archived
 }
 
 const actions = {
   async getOpenTasks ({ commit }, param) {
-    console.log('get open tasks')
-    console.log(param)
-    const response = await axios.get(`${endpoint.first}${req.Tickets.openByOrga}`, {
+    const server = await axios.get(`${endpoint.first}${req.Tickets.openByOrga}`, {
       params: {
         ID: param
       }
     })
-    const data = response.data
-    console.log(data)
-    if (data.success) {
-
+    const response = server.data
+    if (response.success) {
+      commit('setGeneral', response.data)
     } else {
-      // alert(data.msg)
+      alert(response.msg)
     }
-    return data.success
+  },
+
+  async getAssignTasks ({ commit }, param) {
+    const server = await axios.get(`${endpoint.first}${req.Tickets.assign}`, {
+      params: {
+        user: param
+      }
+    })
+
+    const response = server.data
+    if (response.success) {
+      commit('setAssign', response.data)
+    } else {
+      alert(response.msg)
+    }
   }
 }
 
 const mutations = {
-  setUser: (state, user) => {
-    state.user = user
+  setGeneral: (state, data) => {
+    state.general = data
   },
-  setSocket: (state, id) => {
-    state.socketid = id
+  setAssign: (state, data) => {
+    state.assign = data
   }
 }
 
